@@ -1,0 +1,258 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+
+    <title>SIRUANG</title>
+
+</head>
+
+<body>
+
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <section class="testimonials text-center bg-light">
+        <div class="container">
+            
+            <div id=namaUser>
+
+            </div>
+            <div id=roleUser>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                        <img class="img-fluid rounded-circle mb-3" src="@{/img/testimonials-2.jpg}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials text-center">
+        <div class="container">
+            <div class="col-lg-12">
+                <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                    <h3>Profile</h3>
+                    <div id="profile">
+
+                    </div>
+
+                    <br>
+                    <div id="sivitasDetail">
+
+                    </div>
+
+                    <br>
+                    <h4>List Pengadaan Fasilitas</h4>
+                    <div id="listPengadaanFasilitas">
+
+                    </div>
+
+                    <br>
+                    <h4>List Peminajaman Ruangan User Penyetuju</h4>
+                    <div id="listPeminjamanRuanganUserPenyetuju">
+
+                    </div>
+
+                    <br>
+                    <h4>List Peminajaman Ruangan User Peminjam</h4>
+                    <div id="listPeminjamanRuanganUserPeminjam">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <nav th:replace="fragments/fragment :: footer-dev"></nav>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            
+                var message = /*[[${#httpServletRequest.remoteUser}]]*/ 'default';
+                console.log(message);
+            
+            /*]]>*/
+        </script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+                
+        var username = /*[[${#httpServletRequest.remoteUser}]]*/ 'default';
+                    console.log(message);
+
+        var uuidUser;
+                
+        $.ajax({
+            url: "http://localhost:8084/api/v1/detail/" + username,
+            success: function (data) {
+                $("#namaUser").append(
+                    `<h2 class="mb-5">Hi, ${data["result"]["username"]} !</h2>`
+                )
+                $("#roleUser").append(
+                    `<p class="lead mb-0">--- ${data["role"]["nama"]} ---</p>`
+                )
+                $("#profile").append(
+                    `<p class="lead mb-0"> Usernama : ${data["result"]["username"]}</p>
+                    <p class="lead mb-0"> Role : ${data["role"]["nama"]}</p>`
+                )
+                if (data["role"]["nama"] == "Guru" || data["role"]["nama"] == "Kepala Sekolah") {
+                    guruDetail(data["result"]["uuid"]);
+                } 
+                else if (data["role"]["nama"] == "Admin TU" || data["role"]["nama"] == "Pustakawan" 
+                || data["role"]["nama"] == "Pengurus Koperasi" || data["role"]["nama"] == "Anggota Koperasi") {
+                    pegawaiDetail(data["result"]["uuid"]);
+                }
+                else if (data["role"]["nama"] == "Siswa") {
+                    siswaDetail(data["result"]["uuid"]);
+                } 
+                if (data["result"]["listPengadaanFasilitas"] != null) {
+                    listPengadaanFasilitas();
+                } if (data["result"]["listPeminjamanRuanganUserPenyetuju"] != null) {
+                    listPeminjamanRuanganUserPenyetuju();
+                } if (data["result"]["listPeminjamanRuanganUserPeminjam"] != null) {
+                    listPeminjamanRuanganUserPeminjam();
+                }
+            }
+        });
+
+        function listPengadaanFasilitas() {
+            $.ajax({
+                url: "http://localhost:8084/api/v1/detail/" + username,
+                success: function (data) {
+                    // console.log(data)
+                    for (var i = 0; i < data["result"]["listPengadaanFasilitas"].length; i++) {
+                        $("#listPengadaanFasilitas").append(
+                            `
+                            <h6>--- Pengadaan Fasilitas ${i+1} ---</h6>
+                            <p class="lead mb-0">${data["result"]["listPengadaanFasilitas"][i]["nama"]}</p>
+                            <p class="lead mb-0">${data["result"]["listPengadaanFasilitas"][i]["jumlah"]}</p>
+                            <p class="lead mb-0">${data["result"]["listPengadaanFasilitas"][i]["harga"]}</p>
+                            <p class="lead mb-0">${data["result"]["listPengadaanFasilitas"][i]["status"]}</p>`
+                        )
+                    }
+                }
+            });
+        }
+
+        function listPeminjamanRuanganUserPenyetuju() {
+            $.ajax({
+                url: "http://localhost:8084/api/v1/detail/" + username,
+                success: function (data) {
+                    for (var i = 0; i < data["result"]["listPengadaanFasilitas"].length; i++) {
+                        $("#listPeminjamanRuanganUserPenyetuju").append(
+                            `
+                            <h6>--- Peminjaman Ruangan User Penyetuju ${i+1} ---</h6>
+                            <p class="lead mb-0">${data["result"]["listPeminjamanRuanganUserPenyetuju"][i]["waktu_mulai"]}</p>
+                            <p class="lead mb-0">${data["result"]["listPeminjamanRuanganUserPenyetuju"][i]["waktu_selesai"]}</p>
+                            <p class="lead mb-0">${data["result"]["listPeminjamanRuanganUserPenyetuju"][i]["tanggal_mulai"]}</p>
+                            <p class="lead mb-0">${data["result"]["listPeminjamanRuanganUserPenyetuju"][i]["tanggal_selesai"]}</p>
+                            <p class="lead mb-0">${data["result"]["listPeminjamanRuanganUserPenyetuju"][i]["tujuan"]}</p>
+                            <p class="lead mb-0">${data["result"]["listPeminjamanRuanganUserPenyetuju"][i]["keterangan"]}</p>
+                            <p class="lead mb-0">${data["result"]["listPeminjamanRuanganUserPenyetuju"][i]["jumlah_peserta"]}</p>
+                            `
+                        )
+                    }
+                }
+            });
+        }
+
+        function listPeminjamanRuanganUserPeminjam() {
+            $.ajax({
+                url: "http://localhost:8084/api/v1/detail/" + username,
+                success: function (data) {
+                    for (var i = 0; i < data["result"]["listPengadaanFasilitas"].length; i++) {
+                        $("#listPeminjamanRuanganUserPeminjam").append(
+                            `
+                            <h6>--- Peminjaman Ruangan User Peminjam ${i+1} ---</h6>
+                            <p class="lead mb-0">${data["result"]["listPeminjamanRuanganUserPeminjam"][i]["waktu_mulai"]}</p>
+                            <p class="lead mb-0">${data["result"]["listPeminjamanRuanganUserPeminjam"][i]["waktu_selesai"]}</p>
+                            <p class="lead mb-0">${data["result"]["listPeminjamanRuanganUserPeminjam"][i]["tanggal_mulai"]}</p>
+                            <p class="lead mb-0">${data["result"]["listPeminjamanRuanganUserPeminjam"][i]["tanggal_selesai"]}</p>
+                            <p class="lead mb-0">${data["result"]["listPeminjamanRuanganUserPeminjam"][i]["tujuan"]}</p>
+                            <p class="lead mb-0">${data["result"]["listPeminjamanRuanganUserPeminjam"][i]["keterangan"]}</p>
+                            <p class="lead mb-0">${data["result"]["listPeminjamanRuanganUserPeminjam"][i]["jumlah_peserta"]}</p>
+                            `
+                        )
+                    }
+                }
+            });
+        }
+
+        function pegawaiDetail(uuid) {
+            $.ajax({
+            url: "http://localhost:8084/api/v1/detail/pegawai/" + uuid,
+            success: function (data1) {
+                data1["pegawaiData"] = jQuery.parseJSON(data1["pegawaiData"]);
+                $("#sivitasDetail").append(  
+                    `<h4>Profile Detail Sivitas</h4>
+                    <p class="lead mb-0"> idUser :  ${data1["pegawaiData"]["result"]["idUser"]}</p>
+                    <p class="lead mb-0"> Alamat :  ${data1["pegawaiData"]["result"]["alamat"]}</p>
+                    <p class="lead mb-0"> Nama :  ${data1["pegawaiData"]["result"]["nama"]}</p>
+                    <p class="lead mb-0"> NIP :  ${data1["pegawaiData"]["result"]["nip"]}</p>
+                    <p class="lead mb-0"> Tanggal Lahir :  ${data1["pegawaiData"]["result"]["tanggalLahir"]}</p>
+                    <p class="lead mb-0"> Telepon :  ${data1["pegawaiData"]["result"]["telepon"]}</p>
+                    <p class="lead mb-0"> Tempat Lahir :  ${data1["pegawaiData"]["result"]["tempatLahir"]}</p>`
+                )
+            }
+        });
+        }
+
+        function siswaDetail(uuid) {
+            $.ajax({
+            url: "http://localhost:8084/api/v1/detail/siswa/" + uuid,
+            success: function (data1) {
+                data1["pegawaiData"] = jQuery.parseJSON(data1["pegawaiData"]);
+                $("#sivitasDetail").append(  
+                    `<h4>Profile Detail Sivitas</h4>
+                    <p class="lead mb-0"> idUser :  ${data1["pegawaiData"]["result"]["idUser"]}</p>
+                    <p class="lead mb-0"> Alamat :  ${data1["pegawaiData"]["result"]["alamat"]}</p>
+                    <p class="lead mb-0"> Nama :  ${data1["pegawaiData"]["result"]["nama"]}</p>
+                    <p class="lead mb-0"> NIS :  ${data1["pegawaiData"]["result"]["nis"]}</p>
+                    <p class="lead mb-0"> Tanggal Lahir :  ${data1["pegawaiData"]["result"]["tanggalLahir"]}</p>
+                    <p class="lead mb-0"> Telepon :  ${data1["pegawaiData"]["result"]["telepon"]}</p>
+                    <p class="lead mb-0"> Tempat Lahir :  ${data1["pegawaiData"]["result"]["tempatLahir"]}</p>`
+                )
+            }
+        });
+        }
+
+        function guruDetail(uuid) {
+            $.ajax({
+            url: "http://localhost:8084/api/v1/detail/guru/" + uuid,
+            success: function (data1) {
+                data1["pegawaiData"] = jQuery.parseJSON(data1["pegawaiData"]);
+                $("#sivitasDetail").append(  
+                    `<h4>Profile Detail Sivitas</h4>
+                    <p class="lead mb-0"> idUser :  ${data1["pegawaiData"]["result"]["idUser"]}</p>
+                    <p class="lead mb-0"> Alamat :  ${data1["pegawaiData"]["result"]["alamat"]}</p>
+                    <p class="lead mb-0"> Nama :  ${data1["pegawaiData"]["result"]["nama"]}</p>
+                    <p class="lead mb-0"> NIG :  ${data1["pegawaiData"]["result"]["nig"]}</p>
+                    <p class="lead mb-0"> Tanggal Lahir :  ${data1["pegawaiData"]["result"]["tanggalLahir"]}</p>
+                    <p class="lead mb-0"> Telepon :  ${data1["pegawaiData"]["result"]["telepon"]}</p>
+                    <p class="lead mb-0"> Tempat Lahir :  ${data1["pegawaiData"]["result"]["tempatLahir"]}</p>`
+                )
+            }
+        });
+        }
+    </script>
+
+</body>
+
+</html> -->

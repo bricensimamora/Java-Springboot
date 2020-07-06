@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <h2> Ubah Data Peminjaman Ruangan </h2>
+<table class="table tab-content">
+<form th:action="@{/peminjaman-ruangan/ubah/{id}(id=${peminjamanRuangan.id})}" th:object="${peminjamanRuangan}" method="POST">
+    <input type="hidden" th:field="${peminjamanRuangan.id}"/>
+    <tr>
+    	<td>
+    	Waktu Mulai:
+    	</td>
+    	<td>
+      		<input type="text" class="form-control" placeholder="masukan waktu mulai" th:name="waktu_mulai" th:value="${peminjamanRuangan.waktu_mulai}" required>
+    	</td>
+    	</tr>
+    <br>
+    <tr>
+    	<td>
+    	Waktu Selesai:
+    	</td>
+    	<td>
+      		<input type="text" class="form-control" placeholder="masukan waktu selesai" th:name="waktu_selesai" th:value="${peminjamanRuangan.waktu_selesai}" required>
+    	</td>
+    	</tr>
+    <br>
+    <tr>
+    	<td>
+    	Tanggal Mulai:
+    	</td>
+    	<td>
+      		<input type="date" class="form-control" placeholder="masukan tanggal mulai" th:name="tanggal_mulai" th:value="${peminjamanRuangan.tanggal_mulai}" required>
+    	</td>
+    	</tr>
+    <br>
+    <tr>
+    	<td>
+    	Tanggal Selesai:
+    	</td>
+    	<td>
+      		<input type="date" class="form-control" placeholder="masukan tanggal selesai" th:name="tanggal_selesai" th:value="${peminjamanRuangan.tanggal_selesai}" required>
+    	</td>
+    	</tr>
+    <br>
+    <tr>
+    	<td>
+    	Tujuan:
+    	</td>
+    	<td>
+      		<input type="text" class="form-control" placeholder="masukan tujuan" th:name="tujuan" th:value="${peminjamanRuangan.tujuan}" required>
+    	</td>
+    	</tr>
+    <br>
+    <tr>
+    	<td>
+    	Keterangan:
+    	</td>
+    	<td>
+      		<input type="text" class="form-control" placeholder="masukan keterangan" th:name="keterangan" th:value="${peminjamanRuangan.keterangan}" required>
+    	</td>
+    	</tr>
+    <br>
+    <tr>
+    	<td>
+    	Jumlah Peserta:
+    	</td>
+    	<td>
+      		<input type="text" class="form-control" placeholder="masukan jumlah peserta" th:name="jumlah_peserta" th:value="${peminjamanRuangan.jumlah_peserta}" required>
+    	</td>
+    	</tr>
+    <br>
+    <tr>
+    	<td>
+    		<button type="submit" class="btn btn-primary" > Submit </button>
+		</td>
+	</tr>
+</form>
+</table>
+</body>
+</html>

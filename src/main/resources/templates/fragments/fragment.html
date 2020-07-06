@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+
+    <head th:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
+            rel="stylesheet" type="text/css">
+
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        <link rel="stylesheet" th:href="@{/css/landing-page.min.css}">
+        <link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+        <link rel="stylesheet" th:href="@{/vendor/fontawesome-free/css/all.min.css}">
+        <link rel="stylesheet" th:href="@{/vendor/simple-line-icons/css/simple-line-icons.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/vendor/fontawesome-free/css/all.min.css}">
+    </head>
+
+    <head th:fragment="css-dev">
+        <link rel="stylesheet" th:href="@{/vendor/fontawesome-free/css/all.min.css}" type="text/css">
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+        <link rel="stylesheet" th:href="@{css/sb-admin-2.min.css}">
+    </head>
+
+    <head th:fragment="title">
+        <title th:text="${pageTitle}"></title>
+    </head>
+
+    <head th:fragment="js-dev">
+        <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+        <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+        <script th:src="@{/js/sb-admin-2.min.js}"></script>
+        <script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
+        <script th:src="@{/js/demo/chart-area-demo.js}"></script>
+        <script th:src="@{/js/demo/chart-pie-demo.js}"></script>
+    </head>
+
+    <head th:fragment="js">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/esm/popper.min.js"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/esm/popper.min.js"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+    </head>
+</head>
+
+<body>
+    <nav th:fragment="navbar-dev" class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/" th:text="SI-RUANGAN"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <a class="nav-item nav-link active" th:href="@{/}"> Cari Ruangan <span class="sr-only">(current)</span></a>
+
+            <a class="nav-item nav-link active" th:href="@{/peminjaman-ruangan/daftar}"> Daftar Peminjaman <span
+                    class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" th:href="@{/}"> Daftar Peminjaman <span
+                    class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" th:href="@{/pengadaan-fasilitas/daftar}"> Pengadaan Fasilitas <span
+                    class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" th:href="@{/pengadaan-buku}"> Pengadaan Buku <span
+                    class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" th:href="@{/user/add}"> Tambah User <span
+                    class="sr-only">(current)</span></a>
+        </div>
+
+        <div class="navbar-nav pull-right">
+            <a class="nav-item nav-link active" th:href="@{/}">Profile</a>
+            <a class="nav-item nav-link active" th:href="@{/logout}">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Navigation -->
+    <nav th:fragment="navbar" class="navbar navbar-light bg-light static-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">SI RUANG</a>
+
+
+            <a class="nav-item nav-link active" th:href="@{/home-dev}"> Cari Ruang <span
+                    class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" th:href="@{/peminjaman-ruangan/daftar}"> Daftar Peminjaman <span
+                    class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" th:href="@{/home-dev}"> Pendadaan Fasilitas <span
+                    class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" th:href="@{/user/user/tambah}"> Tambah User <span
+                    class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" th:href="@{/user/profile}"> Profile <span
+                    class="sr-only">(current)</span></a>
+            <a class="btn btn-danger" th:href="@{/logout}">Log Out</a>
+        </div>
+    </nav>
+
+    <footer th:fragment="footer" class="page-footer font-small teal pt-4">
+        <div class="container-fluid text-center text-md-left">
+
+        </div>
+        <div class="footer-copyright text-center py-3">© 2019 Copyright:
+            <a href="#"> Kelompok 8 </a>
+        </div>
+    </footer>
+
+    <!-- Footer -->
+    <footer th:fragment="footer-dev" class="footer bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                    <ul class="list-inline mb-2">
+                        <li class="list-inline-item">
+                            <a href="#">About</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Contact</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Terms of Use</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Privacy Policy</a>
+                        </li>
+                    </ul>
+                    <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
+                </div>
+                <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item mr-3">
+                            <a href="#">
+                                <i class="fab fa-facebook fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item mr-3">
+                            <a href="#">
+                                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-instagram fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sidebar -->
+    <ul th:fragment="sidebar" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{/}">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3"> SI-RUANGAN </div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" th:href="@{/}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Home</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Menu
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-building"></i>
+                <span>Ruangan</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Menu Ruangan:</h6>
+                    <a class="collapse-item" th:href="@{/}">Daftar Ruangan</a>
+                    <a class="collapse-item" th:href="@{/peminjaman-ruangan/daftar}">Daftar Peminjaman</a>
+                    
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <!-- <div th:if="${#httpServletRequest.userPrincipal.authorities[0].toString()=='Admin TU'}" class="row"> -->
+            <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                        aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fas fa-fw fa-desktop"></i>
+                        <span>Fasilitas</span>
+                    </a>
+                    
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Menu Fasilitas:</h6>
+                        <a class="collapse-item" th:href="@{/pengadaan-fasilitas/daftar}">Daftar Pengadaan</a>
+                        <a class="collapse-item" th:href="@{/pengadaan-fasilitas/tambah}">Formulir Pengadaan</a>
+                        <a class="collapse-item" th:href="@{/fasilitas/tambah}">Pengadaan Fasilitas</a>
+                    </div>
+                </div>
+                </li>
+        <!-- </div> -->
+        
+        
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-book"></i>
+                <span>Buku</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingUtilities"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Menu Buku:</h6>
+                    <a class="collapse-item" th:href="@{/pengadaan-buku}">Formulir Pengadaan</a>
+                </div>
+            </div>
+        </li>
+        
+<!-- 
+        Divider
+        <hr class="sidebar-divider">
+
+        Heading
+        <div class="sidebar-heading">
+            Addons
+        </div>
+
+        Nav Item - Pages Collapse Menu
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Pages</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Login Screens:</h6>
+                    <a class="collapse-item" href="login.html">Login</a>
+                    <a class="collapse-item" href="register.html">Register</a>
+                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                    <div class="collapse-divider"></div>
+                    <h6 class="collapse-header">Other Pages:</h6>
+                    <a class="collapse-item" href="404.html">404 Page</a>
+                    <a class="collapse-item" href="blank.html">Blank Page</a>
+                </div>
+            </div>
+        </li>
+
+        Nav Item - Charts
+        <li class="nav-item">
+            <a class="nav-link" href="charts.html">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Charts</span></a>
+        </li>
+
+        Nav Item - Tables
+        <li class="nav-item">
+            <a class="nav-link" href="tables.html">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Tables</span></a>
+        </li>
+
+        Divider
+        <hr class="sidebar-divider d-none d-md-block">
+
+        Sidebar Toggler (Sidebar)
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div> -->
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Topbar -->
+    <nav th:fragment="nav-dev" class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+            <!-- Sidebar Toggle (Topbar) -->
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <!-- Topbar Search -->
+                <div class="input-group">
+                    <form th:action="@{/ruangan/view}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" name="nama" class="form-control form-control-lg" placeholder="Nama Ruangan..."
+                            aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary">Cari!</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav ml-auto">
+
+                <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                <li class="nav-item dropdown no-arrow d-sm-none">
+                    <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-search fa-fw"></i>
+                    </a>
+                    <!-- Dropdown - Messages -->
+                    <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                        aria-labelledby="searchDropdown">
+                        <form class="form-inline mr-auto w-100 navbar-search">
+                            <div class="input-group">
+                                <input type="text" class="form-control bg-light border-0 small"
+                                    placeholder="Search for..." aria-label="Search"
+                                    aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+
+                <!-- Nav Item - User Information -->
+                <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" th:text="${#httpServletRequest.remoteUser}"></span>
+                        <img class="img-profile rounded-circle" 
+                            src="https://icon-library.net/images/avatar-icon-images/avatar-icon-images-6.jpg">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                        aria-labelledby="userDropdown">
+                        <a class="dropdown-item" th:href="@{/user/profile}">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" th:href="@{/logout}">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Footer -->
+        <footer th:fragment="footer-dev-1" class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Your Website 2019</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+        <!-- Scroll to Top Button-->
+        <a th:fragment="scroll-to-top" class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+</body>
+
+<!-- <body>
+    <nav th:fragment="navbar" class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+        <a class="navbar-brand" href="/" th:text="SI-RUANGAN"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <a class="nav-item nav-link active" th:href="@{/}">Beranda <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" th:href="@{/poli}">Poli <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" th:href="@{/fitur-cari}">Cari <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" th:href="@{/bonus}">Bonus<span class="sr-only">(current)</span></a>
+        </div>
+    </nav>
+</body> -->
+
+
+
+</html>

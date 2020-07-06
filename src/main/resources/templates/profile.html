@@ -1,0 +1,212 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+
+    <title>SIRUANG</title>
+
+</head>
+
+<body>
+
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <section class="testimonials text-center bg-light">
+        <div class="container">
+            
+            <div id=namaUser>
+
+            </div>
+            <div id=roleUser>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                        <img class="img-fluid rounded-circle mb-3" src="@{/img/testimonials-2.jpg}" alt="">
+                        <h2 th:text="'Hi! ' +  ${user.nama}"></h2>
+                        <p class="font-weight-light mb-0" th:text="'---' + ${role.nama} + '---'"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials text-center">
+        <div class="container">
+            <div class="col-lg-12">
+                <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                    <h3>Profile</h3>
+                    <br>
+                    <div id="profile">
+                        <p class="lead mb-0" th:text="' Nama : ' + ${user.nama}"></p>
+                        <p class="lead mb-0" th:text="' Alamat : ' + ${user.alamat}"></p>
+                        <p class="lead mb-0" th:text="' Nomor Induk : ' + ${user.ni}"></p>
+                        <p class="lead mb-0" th:text="' Tanggal lahir : ' + ${user.tanggalLahir}"></p>
+                        <p class="lead mb-0" th:text="' Tempat Lahir : ' + ${user.tempatLahir}"></p>
+                        <p class="lead mb-0" th:text="' Id User : ' + ${idUser}"></p>
+                        <p class="lead mb-0" th:text="' Username : ' + ${user1.username}"></p>
+
+                    </div>
+
+                    <br>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <nav th:replace="fragments/fragment :: footer-dev"></nav>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Template</title>
+
+    <!-- Custom fonts for this template-->
+    <link rel="stylesheet" th:href="@{/vendor/fontawesome-free/css/all.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/sb-admin-2.min.css}">
+
+    <object th:include="fragments/fragment :: css-dev" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js-dev" th:remove="tag"></object>
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Khusus untuk Table -->
+    <link rel="stylesheet" th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}">
+
+    <script th:src="@{/vendor/datatables/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}"></script>
+    <!-- <script th:src="@{/js/demo/datatables-demo.js}"></script> -->
+    <!-- Khusus untuk Table -->
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <ul th:replace="fragments/fragment :: sidebar"></ul>
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav th:replace="fragments/fragment :: nav-dev"></nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <!-- <h1 class="h3 mb-4 text-gray-800">Blank Page</h1> -->
+
+                </div>
+                <!-- /.container-fluid -->
+
+                <section class="testimonials text-center">
+                    <div class="container">
+                        <div class="col-lg-12">
+                            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                                <h3 class="h3 mb-4 text-gray-800">Profile</h3>
+                                <img class="img-profile rounded-circle" style="width: 300px;"
+                                    src="https://icon-library.net/images/avatar-icon-images/avatar-icon-images-6.jpg">
+                                <br>
+                                <br>
+                                <h5 th:text="'Hi! ' +  ${user.nama}"></h5>
+                                <p class="font-weight-light mb-0" th:text="'---' + ${role.nama} + '---'"></p>
+                                <br>
+                                <div id="profile">
+                                    <p class="lead mb-0" th:text="' Nama : ' + ${user.nama}"></p>
+                                    <p class="lead mb-0" th:text="' Alamat : ' + ${user.alamat}"></p>
+                                    <p class="lead mb-0" th:text="' Nomor Induk : ' + ${user.ni}"></p>
+                                    <p class="lead mb-0" th:text="' Tanggal lahir : ' + ${user.tanggalLahir}"></p>
+                                    <p class="lead mb-0" th:text="' Tempat Lahir : ' + ${user.tempatLahir}"></p>
+                                    <p class="lead mb-0" th:text="' Id User : ' + ${idUser}"></p>
+                                    <p class="lead mb-0" th:text="' Username : ' + ${user1.username}"></p>
+
+                                </div>
+
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer th:replace="fragments/fragment :: footer-dev-1"></footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <link th:href="@{/vendor/jquery/jquery.min.js}">
+    <link th:href="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}">
+    <link th:href="@{/vendor/jquery-easing/jquery.easing.min.js}">
+    <link th:href="@{/js/sb-admin-2.min.js}">
+</body>
+
+</html>
